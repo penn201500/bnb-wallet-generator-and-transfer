@@ -5,6 +5,7 @@ const BN = require("bn.js")
 // const bscURL = "https://bsc-dataseed.binance.org/"
 const bscTestnetURL = "https://data-seed-prebsc-1-s1.binance.org:8545/"
 const web3 = new Web3(bscTestnetURL)
+const bip39 = require("bip39")
 
 // Function to format the current date and time as "YYYY-MM-DD_HH-MM-SS"
 function getFormattedDateTime() {
@@ -129,6 +130,14 @@ async function calculateFee(transaction) {
   return new BN(gasPrice).mul(new BN(estimatedGas)) // Total fee in wei
 }
 
+/**
+ * Generates a random 12-word mnemonic phrase.
+ * @returns {string} The mnemonic phrase.
+ */
+function generateRandomMnemonic() {
+  return bip39.generateMnemonic()
+}
+
 module.exports = {
   getFormattedDateTime,
   writeDataToFile,
@@ -139,4 +148,5 @@ module.exports = {
   readWalletsWithPrivateKeys,
   web3,
   BN,
+  generateRandomMnemonic,
 }
