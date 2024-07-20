@@ -9,7 +9,7 @@ async function retrieveFunds(walletFilePath, centralWalletAddress) {
       console.log(`No funds to retrieve from ${wallet.address}`)
       throw new Error(`No funds to retrieve from ${wallet.address}`)
     }
-    console.log(`Balance of ${wallet.address}: ${web3.utils.fromWei(balance, 'ether')} BNB`);
+    console.log(`Balance of ${wallet.address} is ${web3.utils.fromWei(balance, "ether")} BNB`)
 
     let transaction = {
       from: wallet.address,
@@ -18,7 +18,7 @@ async function retrieveFunds(walletFilePath, centralWalletAddress) {
     }
 
     const estimatedGas = BigInt(await web3.eth.estimateGas({ ...transaction, value: "0x0" }))
-    const gasPrice = await web3.eth.getGasPrice()
+    const gasPrice = BigInt(await web3.eth.getGasPrice())
     transaction.gas = estimatedGas > BigInt(21000) ? estimatedGas : BigInt(21000)
 
     const fee = new BN(gasPrice).mul(new BN(transaction.gas))
@@ -29,9 +29,11 @@ async function retrieveFunds(walletFilePath, centralWalletAddress) {
       throw new Error(`Insufficient funds to cover the fee from ${wallet.address}`)
     }
 
-    const amountTransferred = web3.utils.fromWei(transaction.value, 'ether');
-    const gasFee = web3.utils.fromWei(fee.toString(), "ether");
-    const receipt = await performTransfer(wallet.address, wallet.privateKey, centralWalletAddress, amountTransferred)
+    const amountTransferred = web3.utils.fromWei(transaction.value, "ether")
+    const gasFee = web3.utils.fromWei(fee.toString(), "ether")
+    let nonce = await web3.eth.getTransactionCount(wallet.address, "pending") // Get the current nonce
+    // nonce++
+    const receipt = await performTransfer(wallet.address, wallet.privateKey, centralWalletAddress, amountTransferred, nonce)
     if (!receipt.status) {
       throw new Error(`Transaction failed at ${wallet.address}, transaction hash: ${receipt.transactionHash}`)
     }
@@ -64,9 +66,9 @@ async function main() {
       results.forEach(result => {
         content += `"${result.from}","${result.to}","${result.transactionHash}","${result.status}","${result.amountTransferred}","${result.gasFee}"\n`
       })
-      writeDataToFile("retrieveFunds", content, "csv") // Ensure proper filename for CSV
+      writeDataToFile("retrieveFunds-transactions", content, "csv") // Ensure proper filename for CSV
     } else {
-      writeDataToFile("retrieveFunds", results, "json") // Ensure proper filename for JSON
+      writeDataToFile("retrieveFunds-transactions", results, "json") // Ensure proper filename for JSON
     }
   } catch (error) {
     console.error("An unexpected error occurred:", error.message)

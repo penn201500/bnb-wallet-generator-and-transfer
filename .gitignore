@@ -134,4 +134,6 @@ dist
 wallets_*.*
 transactions_*.*
 retrieveFunds_*.*
+retrieveFunds-transactions_*.*
+transfer-transactions_*.*
 
