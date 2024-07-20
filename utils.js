@@ -32,6 +32,19 @@ function writeDataToFile(prefix, data, format = "csv") {
   console.log(`Data saved to '${filename}'`)
 }
 
+// Function to read data from a file and return an array of wallet addresses
+// File format should be either CSV or JSON
+function readWalletsWithPrivateKeys(filePath) {
+  const data = fs.readFileSync(filePath, "utf8")
+  if (filePath.endsWith(".csv")) {
+    return parse(data, { columns: true }).map(row => ({ address: row.WalletAddress, privateKey: row.PrivateKey }))
+  } else if (filePath.endsWith(".json")) {
+    return JSON.parse(data).map(wallet => ({ address: wallet.walletAddress, privateKey: wallet.privateKey }))
+  } else {
+    throw new Error("Unsupported file format")
+  }
+}
+
 function readWalletAddresses(filePath) {
   const data = fs.readFileSync(filePath, "utf8")
   if (filePath.endsWith(".csv")) {
@@ -107,10 +120,21 @@ async function performTransfer(sender, privateKey, receiver, amount) {
   }
 }
 
+// Calculate the fee for a transaction
+async function calculateFee(transaction) {
+  const gasPrice = await web3.eth.getGasPrice() // Current gas price in wei
+  const estimatedGas = await web3.eth.estimateGas(transaction) // Estimate gas based on transaction
+  return new BN(gasPrice).mul(new BN(estimatedGas)) // Total fee in wei
+}
+
 module.exports = {
   getFormattedDateTime,
   writeDataToFile,
   readWalletAddresses,
   checkBalanceAndCalculate,
   performTransfer,
+  calculateFee,
+  readWalletsWithPrivateKeys,
+  web3,
+  BN
 }

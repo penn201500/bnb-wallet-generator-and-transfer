@@ -133,4 +133,5 @@ dist
 # ignore wallets_*.csv or json files
 wallets_*.*
 transactions_*.*
+retrieveFunds_*.*
 
