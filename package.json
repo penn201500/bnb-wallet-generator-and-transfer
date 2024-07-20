@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "generator.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -16,5 +16,9 @@
     "eth-lib": "^0.1.29",
     "ethers": "^6.13.1",
     "web3": "^4.11.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "mock-fs": "^5.2.0"
   }
 }

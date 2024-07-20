@@ -1,5 +1,5 @@
 const fs = require("fs")
-const parse = require("csv-parse/sync")
+const { parse } = require('csv-parse/sync');
 const { Web3 } = require('web3');
 // const bscURL = "https://bsc-dataseed.binance.org/"
 const bscTestnetURL = "https://data-seed-prebsc-1-s1.binance.org:8545/"
