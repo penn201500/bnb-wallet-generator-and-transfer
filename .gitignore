@@ -136,4 +136,5 @@ transactions_*.*
 retrieveFunds_*.*
 retrieveFunds-transactions_*.*
 transfer-transactions_*.*
+.vscode
 
