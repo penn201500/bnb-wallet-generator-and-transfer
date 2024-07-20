@@ -1,6 +1,4 @@
-const bip39 = require('bip39');
-const pkutils = require('ethereum-mnemonic-privatekey-utils');
-const { Account } = require('eth-lib/lib');
+const { ethers } = require('ethers');
 const { writeDataToFile } = require('./utils');
 
 // Parse command-line arguments
@@ -18,14 +16,12 @@ if (!['csv', 'json'].includes(format.toLowerCase())) {
 }
 
 function generateWallet() {
-    const mnemonic = bip39.generateMnemonic();
-    const privateKey = pkutils.getPrivateKeyFromMnemonic(mnemonic);
-    const account = Account.fromPrivate('0x' + privateKey);
-    return {
-        mnemonic,
-        privateKey,
-        walletAddress: account.address.toLowerCase()
-    };
+  const wallet = ethers.Wallet.createRandom();
+  return {
+      mnemonic: wallet.mnemonic.phrase,
+      privateKey: wallet.privateKey,
+      walletAddress: wallet.address
+  };
 }
 
 console.log(`✨ Generating ${numberOfWallets} wallet(s) in ${format} format...`);
@@ -50,9 +46,9 @@ for (let i = 0; i < numberOfWallets; i++) {
 
 // Save wallets to a file using the utility function
 if (format === 'csv') {
-    writeDataToFile(csvContent, 'csv');  // Ensure proper filename for CSV
+  writeDataToFile('wallets', csvContent, 'csv');  // Ensure proper filename for CSV
 } else {
-    writeDataToFile(wallets, 'json');  // Ensure proper filename for JSON
+  writeDataToFile('wallets', wallets, 'json');  // Ensure proper filename for JSON
 }
 
 console.log(`✨ Generated and saved ${numberOfWallets} wallet(s) in ${format} format.`);

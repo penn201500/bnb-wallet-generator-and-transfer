@@ -8,10 +8,13 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "This Node.js script generates Binance Smart Chain (BSC) wallets, including a mnemonic, a private key, and a wallet address. It can output the wallet details in either CSV or JSON format, based on user preference. Each execution generates wallet data with a timestamp in the filename to ensure uniqueness.",
   "dependencies": {
     "bip39": "^3.1.0",
+    "csv-parse": "^5.5.6",
+    "dotenv": "^16.4.5",
     "eth-lib": "^0.1.29",
-    "ethereum-mnemonic-privatekey-utils": "^1.0.5"
+    "ethers": "^6.13.1",
+    "web3": "^4.11.0"
   }
 }
