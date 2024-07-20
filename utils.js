@@ -68,7 +68,7 @@ async function checkBalanceAndCalculate(sender, amount, numWallets) {
   return { totalAmount, senderBalance }
 }
 
-async function performTransfer(sender, privateKey, receiver, amount) {
+async function performTransfer(sender, privateKey, receiver, amount, nonce) {
   let tx
   const chainId = await web3.eth.getChainId()
   try {
@@ -89,6 +89,7 @@ async function performTransfer(sender, privateKey, receiver, amount) {
         value: web3.utils.toWei(amount.toString(), "ether"),
         maxPriorityFeePerGas,
         maxFeePerGas,
+        nonce: BigInt(nonce),
         chainId,
       }
     } else {
@@ -97,6 +98,7 @@ async function performTransfer(sender, privateKey, receiver, amount) {
         to: receiver,
         value: web3.utils.toWei(amount.toString(), "ether"),
         gasPrice: await web3.eth.getGasPrice(),
+        nonce: BigInt(nonce),
         chainId,
       }
     }
@@ -136,5 +138,5 @@ module.exports = {
   calculateFee,
   readWalletsWithPrivateKeys,
   web3,
-  BN
+  BN,
 }
