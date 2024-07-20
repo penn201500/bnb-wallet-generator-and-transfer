@@ -43,9 +43,9 @@ async function main() {
       transactions.forEach(tx => {
         content += `"${tx.from}","${tx.to}","${tx.amount}","${tx.transactionHash}","${tx.gasUsed}"\n`
       })
-      writeDataToFile("transactions", content, "csv") // Ensure proper filename for CSV
+      writeDataToFile("transfer-transactions", content, "csv") // Ensure proper filename for CSV
     } else {
-      writeDataToFile("transactions", transactions, "json") // Ensure proper filename for JSON
+      writeDataToFile("transfer-transactions", transactions, "json") // Ensure proper filename for JSON
     }
   } catch (error) {
     console.error(`Error: ${error.message}`)
