@@ -91,8 +91,8 @@ node retrieveFunds.js wallets_2024-07-20_19-57-53.csv 0xe0C07BcDd1b2050E3Eb7932F
 ## Output
 
 - Wallet generator outputs wallet details to a file named `wallets_YYYY-MM-DD_HH-MM-SS.csv` or `.json` as per the format specified.
-- Transfer utility logs transactions and saves details to `transactions_YYYY-MM-DD_HH-MM-SS.csv` or `.json` as per the format specified.
-- Retrieval utility logs transactions and saves details to `retrieveFunds_YYYY-MM-DD_HH-MM-SS.csv` or `.json` as per the format specified.
+- Transfer utility logs transactions and saves details to `transfer-transactions_YYYY-MM-DD_HH-MM-SS.csv` or `.json` as per the format specified.
+- Retrieval utility logs transactions and saves details to `retrieveFunds-transactions_YYYY-MM-DD_HH-MM-SS.csv` or `.json` as per the format specified.
 
 *Below is an example of how you can specify the output format in the script:*
 
