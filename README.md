@@ -5,7 +5,7 @@ This Node.js project includes tools for generating Binance Smart Chain (BSC) wal
 
 ## Prerequisites
 
-- Node.js installed (v12.x or higher recommended. It's tested on v22.4.1)
+- Node.js installed (v12.x or higher recommended. It's tested on v20.15.1)
 - npm (Node Package Manager)
 
 ## Installation
