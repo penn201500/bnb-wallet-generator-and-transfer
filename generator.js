@@ -40,5 +40,5 @@ for (let i = 0; i < numberOfWallets; i++) {
 }
 
 // Save wallets to a file using the utility function
-writeDataToFile(wallets, 'json'); // Default is 'csv', change to 'json' to save as JSON
+writeDataToFile(wallets, 'csv'); // Default is 'csv', change to 'json' to save as JSON
 console.log(`✨ Generated and saved ${numberOfWallets} wallet(s) to file.`);
