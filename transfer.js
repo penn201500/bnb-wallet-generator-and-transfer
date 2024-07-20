@@ -18,6 +18,11 @@ async function main() {
         let transactions = [];
         for (const receiver of wallets) {
             const transaction = await performTransfer(sender, privateKey, receiver, amount);
+            if (!transaction.status) {
+                console.error(`Failed to transfer ${amount} BNB to ${receiver}. Transaction hash: ${transaction.transactionHash}`);
+                throw new Error(`Transaction failed at ${receiver}, transaction hash: ${transaction.transactionHash}`);
+                // This will stop the execution and exit the loop
+            }
             console.log(`Transferred ${amount} BNB to ${receiver}, TxHash: ${transaction.transactionHash}`);
             transactions.push({
                 from: sender,
