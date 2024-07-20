@@ -67,10 +67,32 @@ Transfer 0.00002 BNB to multiple recipients listed in a file:
 node transfer.js 0xe0C07BcDd1b2050E3Eb7932FcB6CC111A7933D21 wallets_2024-07-20_19-57-53.csv 0.00002
 ```
 
+### BNB Retrieval Utility
+
+The `retrieveFunds.js` script allows for the retrieval of BNB from multiple wallets back to a central wallet efficiently:
+
+To use the retrieval utility:
+
+```bash
+node retrieveFunds.js [wallet-file] [central-wallet-address]
+```
+
+- `[wallet-file]`: Path to the file containing wallets from which to retrieve BNB.
+- `[central-wallet-address]`: Wallet address to which all BNB will be retrieved.
+
+#### Example
+
+Retrieve BNB from multiple wallets:
+
+```bash
+node retrieveFunds.js wallets_2024-07-20_19-57-53.csv 0xe0C07BcDd1b2050E3Eb7932FcB6CC111A7933D21
+```
+
 ## Output
 
-- Wallet generator outputs wallet details to a file named `wallets_YYYY-MM-DD_HH-MM-SS.format`.
+- Wallet generator outputs wallet details to a file named `wallets_YYYY-MM-DD_HH-MM-SS.csv` or `.json` as per the format specified.
 - Transfer utility logs transactions and saves details to `transactions_YYYY-MM-DD_HH-MM-SS.csv` or `.json` as per the format specified.
+- Retrieval utility logs transactions and saves details to `retrieveFunds_YYYY-MM-DD_HH-MM-SS.csv` or `.json` as per the format specified.
 
 *Below is an example of how you can specify the output format in the script:*
 
