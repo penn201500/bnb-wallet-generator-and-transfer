@@ -1,0 +1,17 @@
+{
+  "name": "bnb-wallet",
+  "version": "1.0.0",
+  "main": "generator.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bip39": "^3.1.0",
+    "eth-lib": "^0.1.29",
+    "ethereum-mnemonic-privatekey-utils": "^1.0.5"
+  }
+}
