@@ -50,9 +50,9 @@ for (let i = 0; i < numberOfWallets; i++) {
 
 // Save wallets to a file using the utility function
 if (format === 'csv') {
-    writeDataToFile(csvContent, 'wallets.csv');  // Ensure proper filename for CSV
+    writeDataToFile(csvContent, 'csv');  // Ensure proper filename for CSV
 } else {
-    writeDataToFile(wallets, 'wallets.json');  // Ensure proper filename for JSON
+    writeDataToFile(wallets, 'json');  // Ensure proper filename for JSON
 }
 
 console.log(`✨ Generated and saved ${numberOfWallets} wallet(s) in ${format} format.`);
