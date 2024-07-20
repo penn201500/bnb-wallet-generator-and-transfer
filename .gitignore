@@ -130,5 +130,6 @@ dist
 .pnp.*
 
 # misc
-*.csv
+# ignore wallets_*.csv or json files
+wallets_*.*
 
