@@ -12,25 +12,23 @@ This Node.js script generates Binance Smart Chain (BSC) wallets, including a mne
 
 First, clone this repository or download the source code. Navigate to the project directory and install the required dependencies:
 
-\```bash
+```bash
 
-git clone [https://github.com/penn201500/bnb-wallet-generator-and-transfer.git](https://github.com/penn201500/bnb-wallet-generator-and-transfer.git)
-
+git clone https://github.com/penn201500/bnb-wallet-generator-and-transfer.git
 cd bnb-wallet-generator-and-transfer
-
 npm install
 
-\```
+```
 
 ## Usage
 
 To run the wallet generator:
 
-\```bash
+```bash
 
 node generator.js [number-of-wallets] [format]
 
-\```
+```
 
 - `[number-of-wallets]` (optional): The number of wallets to generate. Defaults to 1 if not specified.
 - `[format]` (optional): The output format of the wallet data (`csv` or `json`). Defaults to `csv` if not specified.
@@ -39,19 +37,19 @@ node generator.js [number-of-wallets] [format]
 
 Generate a single wallet in CSV format:
 
-\```bash
+```bash
 
 node generator.js
 
-\```
+```
 
 Generate 5 wallets in JSON format:
 
-\```bash
+```bash
 
 node generator.js 5 json
 
-\```
+```
 
 ## Output
 
