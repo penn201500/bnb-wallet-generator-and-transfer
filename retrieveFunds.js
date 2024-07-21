@@ -39,6 +39,7 @@ async function retrieveFunds(walletFilePath, centralWalletAddress) {
     }
 
     results.push({
+      timestamp: receipt.timestamp,
       from: wallet.address,
       to: centralWalletAddress,
       transactionHash: receipt.transactionHash,
@@ -62,9 +63,9 @@ async function main() {
     const results = await retrieveFunds(walletFilePath, centralWalletAddress)
     let format = "csv"
     if (format === "csv") {
-      let content = "From,To,TransactionHash,Status,AmountTransferred,GasFee\n"
+      let content = "Timestamp,From,To,TransactionHash,Status,AmountTransferred,GasFee\n"
       results.forEach(result => {
-        content += `"${result.from}","${result.to}","${result.transactionHash}","${result.status}","${result.amountTransferred}","${result.gasFee}"\n`
+        content += `"${result.timestamp}","${result.from}","${result.to}","${result.transactionHash}","${result.status}","${result.amountTransferred}","${result.gasFee}"\n`
       })
       writeDataToFile("retrieveFunds-transactions", content, "csv") // Ensure proper filename for CSV
     } else {
