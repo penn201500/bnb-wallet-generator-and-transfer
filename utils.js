@@ -72,6 +72,7 @@ async function checkBalanceAndCalculate(sender, amount, numWallets) {
 async function performTransfer(sender, privateKey, receiver, amount, nonce) {
   let tx
   const chainId = await web3.eth.getChainId()
+  const transactionGasValue = web3.utils.toWei(amount.toString(), "ether")
   try {
     // Check if the network uses EIP-1559 transaction type
     // 1: Ethereum Mainnet
@@ -87,7 +88,7 @@ async function performTransfer(sender, privateKey, receiver, amount, nonce) {
       tx = {
         from: sender,
         to: receiver,
-        value: web3.utils.toWei(amount.toString(), "ether"),
+        value: transactionGasValue,
         maxPriorityFeePerGas,
         maxFeePerGas,
         nonce: BigInt(nonce),
@@ -97,7 +98,7 @@ async function performTransfer(sender, privateKey, receiver, amount, nonce) {
       tx = {
         from: sender,
         to: receiver,
-        value: web3.utils.toWei(amount.toString(), "ether"),
+        value: transactionGasValue,
         gasPrice: await web3.eth.getGasPrice(),
         nonce: BigInt(nonce),
         chainId,
