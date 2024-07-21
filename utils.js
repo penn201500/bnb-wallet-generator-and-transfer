@@ -112,7 +112,12 @@ async function performTransfer(sender, privateKey, receiver, amount, nonce) {
 
     // Sign and send the transaction
     const signedTx = await web3.eth.accounts.signTransaction(tx, privateKey)
-    return await web3.eth.sendSignedTransaction(signedTx.rawTransaction)
+    const receipt = await web3.eth.sendSignedTransaction(signedTx.rawTransaction)
+
+    // Fetch block details to get the timestamp
+    const block = await web3.eth.getBlock(receipt.blockNumber)
+    receipt.timestamp = block.timestamp // Timestamp when the block was mined
+    return receipt
   } catch (error) {
     console.error("Transaction failed:", error)
     // Handle specific error scenarios here

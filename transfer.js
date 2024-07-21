@@ -29,6 +29,7 @@ async function main() {
       }
       console.log(`Transferred ${amount} BNB to ${receiver}, TxHash: ${transaction.transactionHash}`)
       transactions.push({
+        timestamp: transaction.timestamp,
         from: sender,
         to: receiver,
         amount,
@@ -39,9 +40,9 @@ async function main() {
     let format = "csv" // Default format is 'csv'
     // Save wallets to a file using the utility function
     if (format === "csv") {
-      let content = "From,To,Amount,TransactionHash,GasUsed\n"
+      let content = "Timestamp,From,To,Amount,TransactionHash,GasUsed\n"
       transactions.forEach(tx => {
-        content += `"${tx.from}","${tx.to}","${tx.amount}","${tx.transactionHash}","${tx.gasUsed}"\n`
+        content += `"${tx.timestamp}","${tx.from}","${tx.to}","${tx.amount}","${tx.transactionHash}","${tx.gasUsed}"\n`
       })
       writeDataToFile("transfer-transactions", content, "csv") // Ensure proper filename for CSV
     } else {
