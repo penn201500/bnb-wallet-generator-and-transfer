@@ -137,4 +137,6 @@ retrieveFunds_*.*
 retrieveFunds-transactions_*.*
 transfer-transactions_*.*
 .vscode
+*.xlsx
+*.png
 
